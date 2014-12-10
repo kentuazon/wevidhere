@@ -1,0 +1,4 @@
+wevidhere
+=========
+
+Angular JS class
