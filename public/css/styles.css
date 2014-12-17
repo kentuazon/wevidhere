@@ -6,12 +6,12 @@ html{
 	/* keep mobiles from adjusting type size */
 	-webkit-text-size-adjust:100%;
 	-ms-text-size-adjust:100%;
-	color:black;
-	background-color:white;
+	color:#fff;
+	background-color:#000;
 }
 
 footer{
-	font-family:'Englebert', sans-serif;
+	font-family:'ralewayregular', sans-serif;
 }
 
 /* remove extra space for rich media at bottom of their container */
