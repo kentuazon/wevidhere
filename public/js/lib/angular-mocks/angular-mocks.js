@@ -1,5 +1,5 @@
 /**
- * @license AngularJS v1.3.6
+ * @license AngularJS v1.3.5
  * (c) 2010-2014 Google, Inc. http://angularjs.org
  * License: MIT
  */
@@ -1119,7 +1119,7 @@ angular.mock.dump = function(object) {
    ```
  */
 angular.mock.$HttpBackendProvider = function() {
-  this.$get = ['$rootScope', '$timeout', createHttpBackendMock];
+  this.$get = ['$rootScope', createHttpBackendMock];
 };
 
 /**
@@ -1136,7 +1136,7 @@ angular.mock.$HttpBackendProvider = function() {
  * @param {Object=} $browser Auto-flushing enabled if specified
  * @return {Object} Instance of $httpBackend mock
  */
-function createHttpBackendMock($rootScope, $timeout, $delegate, $browser) {
+function createHttpBackendMock($rootScope, $delegate, $browser) {
   var definitions = [],
       expectations = [],
       responses = [],
@@ -1166,9 +1166,7 @@ function createHttpBackendMock($rootScope, $timeout, $delegate, $browser) {
     }
 
     function wrapResponse(wrapped) {
-      if (!$browser && timeout) {
-        timeout.then ? timeout.then(handleTimeout) : $timeout(handleTimeout, timeout);
-      }
+      if (!$browser && timeout && timeout.then) timeout.then(handleTimeout);
 
       return handleResponse;
 
@@ -2042,7 +2040,7 @@ angular.module('ngMockE2E', ['ng']).config(['$provide', function($provide) {
  */
 angular.mock.e2e = {};
 angular.mock.e2e.$httpBackendDecorator =
-  ['$rootScope', '$timeout', '$delegate', '$browser', createHttpBackendMock];
+  ['$rootScope', '$delegate', '$browser', createHttpBackendMock];
 
 
 /**
